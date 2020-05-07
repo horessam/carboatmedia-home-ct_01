@@ -24,12 +24,6 @@ public class DetectScamServiceImpl implements DetectScamService {
     private static final String RULE_REGISTER_NUMBER_KEY = "rule::registernumber::blacklist";
     private QuotationService quotationService;
     private BlacklistService blacklistService;
-
-    public DetectScamServiceImpl(QuotationService quotationService, BlacklistService blacklistService) {
-        this.quotationService = quotationService;
-        this.blacklistService = blacklistService;
-    }
-
     private Predicate<Contact> RULE_FIRST_NAME = (Contact contact) -> contact.getFirstName().length() > 2;
     private Predicate<Contact> RULE_LAST_NAME = (Contact contact) -> contact.getLastName().length() > 2;
 
@@ -75,6 +69,11 @@ public class DetectScamServiceImpl implements DetectScamService {
         }
         return result;
     };
+
+    public DetectScamServiceImpl(QuotationService quotationService, BlacklistService blacklistService) {
+        this.quotationService = quotationService;
+        this.blacklistService = blacklistService;
+    }
 
     @Override
     public Scam detectScam(Ad ad) {
