@@ -78,7 +78,7 @@ public class DetectScamServiceImpl implements DetectScamService {
 
     @Override
     public Scam detectScam(Ad ad) {
-        List<String> detectedRules = new ArrayList();
+        List<String> detectedRules = new ArrayList<String>();
         Contact contact = ad.getContacts();
 
         if (!RULE_FIRST_NAME.test(contact)) {
